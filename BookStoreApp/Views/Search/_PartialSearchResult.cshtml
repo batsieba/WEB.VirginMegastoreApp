@@ -1,0 +1,31 @@
+﻿@model List<Product>
+<div class="row">
+    @if (Model.Count > 0)  //check if the Model (list of products) has any products
+{
+        foreach (var product in Model) // loop through each products in the model
+    {<div class="col-sm-3">
+        <div class="card" style="margin-bottom:15px; margin-top:10px">
+            <div class="card-header">
+                <h5>@product.Product_Name</h5>
+                </div>
+                <p class="card-text">
+                   Category:  @product.Category.CategoryName
+                </p>
+                <img class="card-img-top" src=@("/images/"+product.CoverPhoto) style="width:100%;height:250px"/>       
+                <div class="card-footer text-center">
+                    <a asp-controller="Search" asp-action="Detail" asp-route-id=@product.Product_ID class="btn btn-primary">View</a>
+
+                        @if (User.Identity.IsAuthenticated)
+                            if (User.IsInRole("Adminstrator"))
+                            {
+                                <a asp-controller="Product" asp-action="Edit" asp-route-id=@product.Product_ID class="btn btn-primary">Edit</a>
+                                <a asp-controller="Product" asp-action="Delete" asp-route-id=@product.Product_ID class="btn btn-danger">Delete</a>
+                            }
+                </div>
+            </div>
+        </div>
+    }
+ }
+else
+ {  <p>No products found</p>  }
+</div>

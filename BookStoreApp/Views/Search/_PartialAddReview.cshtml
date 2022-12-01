@@ -1,0 +1,23 @@
+﻿@model Review
+<h4> Add a Review</h4>
+<form asp-controller="Product" asp-action="AddReview" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        1 <input type="radio" asp-for="Rating" value="1" />
+        2 <input type="radio" asp-for="Rating" value="2" />
+        3 <input type="radio" asp-for="Rating" value="3" />
+        4 <input type="radio" asp-for="Rating" value="4" />
+        5 <input type="radio" asp-for="Rating" value="5" />
+    </div>
+    <div class="form-group">
+        <textarea name="Comment" rows="6" cols="50"></textarea>
+    </div>
+    <div>
+        <input type="hidden" id="lblRating" name="Rating" />
+        <input type="hidden" name="Product_ID" value="@Model.Product_ID" />
+    </div>
+    <div>
+        <input type="submit" class="btn btn-primary active" name="SaveComment" value="Save Comment" />
+    </div>
+    
+</form>

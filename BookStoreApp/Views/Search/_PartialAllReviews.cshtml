@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Review>
+<div class="row">
+ @foreach (var review in Model)
+        {
+               <p>
+                @for (int i = 0; i < review.Rating; i++)
+                {
+                    <span class="glyphicon glyphicon-star"></span>
+                }
+                @for (int i = review.Rating; i < 5; i++)
+                {
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                }
+             @review.ReviewDate, <br/>
+             @review.Comment</p>
+            <hr />
+        }
+</div>

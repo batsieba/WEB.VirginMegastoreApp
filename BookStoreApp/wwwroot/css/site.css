@@ -1,0 +1,39 @@
+html {
+  font-size: 14px;
+  
+  background-color:lightgray;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+  
+}
+
+body {
+    margin-bottom: 60px;
+    background-color:darkgrey;
+   
+}
+
+h1{
+    color:white;
+    font-weight:700;
+    font-style:unset;
+}
+
+.row {
+    display: flex;
+}
+
+/* Create three equal columns that sits next to each other */
+.column {
+    flex: 33.33%;
+    padding: 5px;
+}

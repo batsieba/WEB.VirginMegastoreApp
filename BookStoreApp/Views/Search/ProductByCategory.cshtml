@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Search By Category";
+}
+
+<h1>Search By Category</h1>
+<p>This page was loaded on @DateTime.Now</p>
+<form id="searchForm" method="get">
+    <select id="CategoryID" asp-items=ViewBag.CatList>
+        <option value="0">Select a category</option>
+    </select>
+    <button type="button" class="btn btn-primary" id="btnSearch">Search</button>
+</form>
+
+<!-- partial view will be loaded here-->
+<div id="searchResults">
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSearch").click(function () {
+            //get CategoryID value of the selected item in the select list
+            var searchVal = $("#CategoryID").val();
+            /*call Action and pass the Cateogry ID of the select list*/
+            $("#searchResults").load("@Url.Action("ProductByCategory")", { catID: searchVal });
+        });
+    });
+</script>
+

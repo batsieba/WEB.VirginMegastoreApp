@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "ProductByName";
+}
+
+
+
+<h1>Search By Product Name</h1>
+<p>This page was loaded on @DateTime.Now</p>
+<form method="get">
+    <label> Product Name </label>
+    <input type="text" required name="title" id="txtTitle" />
+    <button type="button" class="btn btn-primary" id="btnSearch">Search</button>
+</form>
+
+@*@if (Model!=null) //check if the Model (sent by controller) is NOT null
+{
+  <partial name="_PartialSearchResult" model="Model" />  //load partial view
+}*@
+
+<!-- partial view will be loaded here-->
+<div id="searchResults">
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#btnSearch").click(function () {
+            //get title of the selected item in the select list
+            var searchVal = $("#txtTitle").val();
+            /*call action and pass the title as a parameter*/
+            $("#searchResults").load("/Search/ProductByName", { title: searchVal });
+        });
+    });
+</script>

@@ -1,0 +1,43 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Product Details";
+}
+<h1>Book Detail</h1>
+<div class="card-deck">
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>@Model.Product_Name</h5>
+             </div>
+             <p class="card-text">
+               Category: @Model.Category.CategoryName <br/>
+               Reviews: @Model.Reviews.Count
+               Rating:@(Model.Reviews.Count > 0 ? Model.Reviews.Average(r => r.Rating):" None")  
+             </p>
+             <div>
+                 <img src=@("/images/"+Model.CoverPhoto) style="width:150px; float:left; margin-right:10px"/> 
+                 <p>@Model.Description</p>
+             </div>    
+        </div>
+     </div>
+</div>
+</div>
+
+<h5>Reviews</h5>
+@if (Model.Reviews.Count > 0)
+{ 
+  <partial name="_PartialAllReviews" model="Model.Reviews" />
+}
+else
+{
+  <p>There are no reviews for this product</p>
+}
+
+ @if (User.Identity.IsAuthenticated)
+        if (User.IsInRole("Member"))
+        {
+             <partial name="_PartialAddReview" model="new Review{Product_ID = @Model.Product_ID}" />
+                          
+        }
+
